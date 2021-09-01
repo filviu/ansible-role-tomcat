@@ -1,0 +1,32 @@
+---
+galaxy_info:
+  role_name: tomcat
+  author: silviuvulcan
+  description: Setup Apache Tomcat from binary tgz
+
+  license: "license (BSD, MIT)"
+
+  min_ansible_version: 2.7
+
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+        - bullseye
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+        - focal
+    - name: EL
+      versions:
+        - 7
+        - 8
+
+  galaxy_tags:
+    - web
+    - apache
+    - tomcat
+
+dependencies: []
