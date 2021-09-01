@@ -1,5 +1,5 @@
 ---
-- name: Ensure {{ tomcat_install_path }} exists
+- name: setup | ensure {{ tomcat_install_path }} exists
   file:
     path: "{{ tomcat_install_path }}"
     owner: "{{ tomcat_user }}"
@@ -7,7 +7,7 @@
     mode: 0755
     state: directory
 
-- name: Unarchive apache-tomcat-{{ tomcat_version }}.tar.gz at {{ tomcat_install_path }}
+- name: setup | unarchive apache-tomcat-{{ tomcat_version }}.tar.gz at {{ tomcat_install_path }}
   unarchive:
     src: "{{ tomcat_download_url }}/tomcat/tomcat-{{ tomcat_version.split('.')[0] }}/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
     dest: "{{ tomcat_install_path }}"
@@ -16,14 +16,14 @@
     group: "{{ tomcat_group }}"
     creates: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}"
 
-- name: Fix parent folder permissions
+- name: setup | fix parent folder permissions
   file:
     path: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}"
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
     recurse: yes
 
-- name: Deploy pgsql tomcat driver
+- name: setup | deploy drivers
   get_url:
     url: "{{ item }}"
     owner: "{{ tomcat_user }}"
