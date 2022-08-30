@@ -12,10 +12,11 @@ tomcat_force_install: false
 tomcat_user: tomcat
 tomcat_group: tomcat
 
-tomcat_drivers: 
-  - https://example.com/somedriver-v1.0.jar
-
 # those get deployed if they are defined
+
 # tomcat_server_xml_template: tomcat/server.xml.j2
 # tomcat_users_xml_template: tomcat/tomcat-users.xml.j2
 # tomcat_setenv_sh_template: tomcat/setenv.sh.j2
+
+tomcat_drivers:
+  - https://example.com/somedriver-v1.0.jar

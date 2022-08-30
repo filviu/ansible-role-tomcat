@@ -1,28 +1,28 @@
 ---
 
 - name: Create server configuration file
-  template:
+  ansible.builtin.template:
     src: "{{ tomcat_server_xml_template }}"
     dest: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}/conf/server.xml"
     owner: "{{ tomcat_user }}"
-    group: "{{ tomcat_group }}"
+    ansible.builtin.group: "{{ tomcat_group }}"
     mode: 0644
   when: tomcat_server_xml_template is defined
 
 - name: Create tomcat-users configuration file
-  template:
+  ansible.builtin.template:
     src: "{{ tomcat_users_xml_template }}"
     dest: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}/conf/tomcat-users.xml"
     owner: "{{ tomcat_user }}"
-    group: "{{ tomcat_group }}"
+    ansible.builtin.group: "{{ tomcat_group }}"
     mode: 0644
   when: tomcat_users_xml_template is defined
 
 - name: Create tomcat-users configuration file
-  template:
+  ansible.builtin.template:
     src: "{{ tomcat_setenv_sh_template }}"
     dest: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}/bin/setenv.sh"
     owner: "{{ tomcat_user }}"
-    group: "{{ tomcat_group }}"
+    ansible.builtin.group: "{{ tomcat_group }}"
     mode: 0755
   when: tomcat_setenv_sh_template is defined

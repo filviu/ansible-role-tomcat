@@ -39,7 +39,7 @@ None.
   become: yes
 
   roles:
-    - role: silviuvulcan.tomcat
+    - role: filviu.tomcat
       tomcat_version: 9.0.27
       tomcat_install_path: /opt
       tomcat_user: tomcat

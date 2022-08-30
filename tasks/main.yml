@@ -1,5 +1,6 @@
+---
 - name: env | determine if {{ tomcat_user }} exists
-  getent:
+  ansible.builtin.getent:
     database: passwd
     key: "{{ tomcat_user }}"
     fail_key: false
@@ -14,19 +15,19 @@
   when: getent_passwd[tomcat_user] == none
 
 - name: Check if tomcat is already installed
-  stat:
+  ansible.builtin.stat:
     path: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}"
   register: is_installed
 
 - name: Give up if installation already exists
-  debug:
+  ansible.builtin.debug:
     msg: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }} already exists and will not be overwritten"
   when: is_installed.stat.exists and not tomcat_force_install
 
 - name: Install tomcat {{ tomcat_version }}
-  import_tasks: install.yml
+  ansible.builtin.import_tasks: install.yml
   when: not is_installed.stat.exists or tomcat_force_install
 
 - name: Initialize tomcat configuration
-  import_tasks: init.yml
+  ansible.builtin.import_tasks: init.yml
   when: not is_installed.stat.exists or tomcat_force_install

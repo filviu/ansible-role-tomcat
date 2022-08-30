@@ -5,15 +5,15 @@
 
   pre_tasks:
     - name: Update apt cache.
-      apt: update_cache=true cache_valid_time=600
+      ansible.builtin.apt: update_cache=true cache_valid_time=600
       when: ansible_os_family == 'Debian'
 
     - name: Install test dependencies (RedHat).
-      package: name=which state=present
+      ansible.builtin.package: name=which state=present
       when: ansible_os_family == 'RedHat'
 
   roles:
-    - role: silviuvulcan.tomcat
+    - role: filviu.tomcat
       tomcat_force_install: true
-      tomcat_drivers: 
+      tomcat_drivers:
         - https://jdbc.postgresql.org/download/postgresql-9.4-1206-jdbc4.jar

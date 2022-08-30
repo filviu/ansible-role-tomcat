@@ -13,7 +13,7 @@ name: Release
 
 defaults:
   run:
-    working-directory: 'silviuvulcan.tomcat'
+    working-directory: 'filviu.tomcat'
 
 jobs:
 
@@ -24,7 +24,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: 'silviuvulcan.tomcat'
+          path: 'filviu.tomcat'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2
