@@ -3,7 +3,7 @@
   ansible.builtin.file:
     path: "{{ tomcat_install_path }}"
     owner: "{{ tomcat_user }}"
-    ansible.builtin.group: "{{ tomcat_group }}"
+    group: "{{ tomcat_group }}"
     mode: 0755
     state: directory
 
@@ -13,21 +13,21 @@
     dest: "{{ tomcat_install_path }}"
     remote_src: true
     owner: "{{ tomcat_user }}"
-    ansible.builtin.group: "{{ tomcat_group }}"
+    group: "{{ tomcat_group }}"
     creates: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}"
 
 - name: setup | fix parent folder permissions
   ansible.builtin.file:
     path: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}"
     owner: "{{ tomcat_user }}"
-    ansible.builtin.group: "{{ tomcat_group }}"
+    group: "{{ tomcat_group }}"
     recurse: yes
 
 - name: setup | deploy drivers
   ansible.builtin.get_url:
     url: "{{ item }}"
     owner: "{{ tomcat_user }}"
-    ansible.builtin.group: "{{ tomcat_group }}"
+    group: "{{ tomcat_group }}"
     dest: "{{ tomcat_install_path }}/apache-tomcat-{{ tomcat_version }}/lib/"
     mode: 0640
   with_items: "{{ tomcat_drivers }}"
